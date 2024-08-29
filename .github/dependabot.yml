@@ -1,0 +1,15 @@
+version: 2
+updates:
+  - package-ecosystem: "maven"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "thursday"
+      time: "02:00"
+    labels:
+      - "Source: Internal"
+      - "dependencies"
+      - "java"
+    open-pull-requests-limit: 100
+#    ignore:
+#      - dependency-name: "org.springframework.version"
