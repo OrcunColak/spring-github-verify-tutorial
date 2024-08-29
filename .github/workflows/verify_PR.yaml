@@ -10,6 +10,7 @@ name: Verify the PR
 run-name: ${{ github.actor }} is verify the PR.
 
 on:
+  # The workflow is triggered whenever a pull request is opened against the master branch.
   pull_request:
     branches:
       - master
@@ -17,6 +18,7 @@ on:
 jobs:
   build:
     
+    # The job will run on an Ubuntu environment (ubuntu-latest), as specified in the matrix.
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
@@ -24,9 +26,11 @@ jobs:
     
     steps:
       
+      # This step checks out the repository code from the PR branch
       - name: check out branch
         uses: actions/checkout@v3
       
+      # This step sets up Java Development Kit (JDK) version 22 using the Temurin distribution.
       - name: Set up JDK 22
         uses: actions/setup-java@v3
         with:
@@ -34,15 +38,19 @@ jobs:
           distribution: 'temurin'
           cache: maven
       
+      #  Runs mvn clean
       - name: clear project
         run: mvn clean
       
+      #  Compiles the project
       - name: compile the project
         run: mvn compile
       
+      # Runs the project's unit tests
       - name: run test case
         run: mvn test
       
+      # Builds the project by packaging it into its final form
       - name: Build with Maven
         run: mvn clean install package
 
