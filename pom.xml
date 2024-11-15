@@ -30,6 +30,7 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                    <finalName>spring-github-verify-tutorial</finalName>
                 </configuration>
             </plugin>
         </plugins>

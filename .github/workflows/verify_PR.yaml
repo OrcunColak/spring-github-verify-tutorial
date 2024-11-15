@@ -28,7 +28,7 @@ jobs:
       
       # This step checks out the repository code from the PR branch
       - name: check out branch
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       
       # This step sets up Java Development Kit (JDK) version 22 using the Temurin distribution.
       - name: Set up JDK 22
@@ -55,6 +55,17 @@ jobs:
         run: mvn clean install package
 
 
-#      # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
+#      Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
 #      - name: Update dependency graph
 #        uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
+
+#      Optional push to docker hub
+#      - name: Build & Push Docker Image
+#        uses: mr-smithers-excellent/docker-build-push-action@v5
+#        with:
+#          image: orcuncolakbey/spring-github-verify-tutorial
+#          tags: latest
+#          registry: docker.io
+#          dockerfile: Dockerfile
+#          username: ${{ secrets.DOCKER_USERNAME }}
+#          password: ${{ secrets.DOCKER_PASSWORD }}
